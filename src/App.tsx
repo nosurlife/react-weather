@@ -18,10 +18,10 @@ class App extends React.Component {
   public getWeather = async (e: any) => {
     e.preventDefault();
     const city = e.target.elements.city.value;
-    const country = e.target.element.country.value;
+    const country = e.target.elements.country.value;
     const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`);
     const data = await apiCall.json();
-    if (city && country) {
+    if (city && country && data.cod !== "404") {
       console.log(data);
       this.setState({
         temperature: data.main.temp,
@@ -38,7 +38,7 @@ class App extends React.Component {
         country: undefined,
         humidity: undefined,
         description: undefined,
-        error: "Please enter the location."
+        error: "Please enter a valid location."
       });
     }
   }
