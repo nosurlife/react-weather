@@ -1,11 +1,16 @@
+import Typography from '@material-ui/core/Typography';
 import React from 'react';
 
 class Titles extends React.Component {
     public render() {
         return (
             <div>
-                <h1>Curent Weather Conditions</h1>
-                <p>TO FILL IN...</p>
+                <Typography variant="headline" component="h3">
+                    Curent Weather Conditions
+                </Typography>
+                <Typography component="p">
+                    Enter the location below.
+                </Typography>
             </div>
         );
     }

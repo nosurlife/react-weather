@@ -1,3 +1,4 @@
+import Paper from '@material-ui/core/Paper';
 import * as React from 'react';
 import './App.css';
 import Form from "./Components/Form";
@@ -19,7 +20,7 @@ class App extends React.Component {
     e.preventDefault();
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
-    const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`);
+    const apiCall = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await apiCall.json();
     if (city && country && data.cod !== "404") {
       console.log(data);
@@ -44,16 +45,20 @@ class App extends React.Component {
   }
   public render() {
     return (
-      <div className="App">
-        <Titles />
-        <Form getWeather={this.getWeather}/>
-        <Weather
-          temperature={this.state.temperature}
-          city={this.state.city}
-          country={this.state.country}
-          humidity={this.state.humidity}
-          description={this.state.description}
-          error={this.state.error}/>
+      <div className="Page-background">
+        <div className="App">
+          <Paper elevation={10} style={{paddingTop: "3vh", minHeight: "25vh"}}>
+            <Titles />
+            <Form getWeather={this.getWeather}/>
+            <Weather
+              temperature={this.state.temperature}
+              city={this.state.city}
+              country={this.state.country}
+              humidity={this.state.humidity}
+              description={this.state.description}
+              error={this.state.error}/>
+          </Paper>
+        </div>
       </div>
     )
   }
